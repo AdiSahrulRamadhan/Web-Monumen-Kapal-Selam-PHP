@@ -1,0 +1,266 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Restoran Terdekat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #0A4773;
+            color: white;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; /* Center the navigation menu */
+        }
+
+        nav ul li {
+            margin-right: 10px;
+            font-size: 20px;
+            position: relative;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 20px; /* Add padding for better click area */
+            display: block; /* Ensure the anchor takes up the full space of the list item */
+            text-align: center; /* Center text inside the anchor */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
+        }
+
+        nav ul li a:hover {
+            text-decoration: none;
+            background-color: black;
+            color: #fff; /* Optional: change text color on hover */
+            border-radius: 5px; /* Optional: rounded corners */
+        }
+
+        .content-box {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            margin-left: 90px; 
+            margin-bottom: 350px;
+            text-align: justify;
+            color: white; 
+        }
+
+        .content h1 {
+            font-size: 40px;
+            font-family: Patua One;
+            font-style: italic;
+        }
+
+        .kontak {
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 30px 200px;
+            background-color: #ebf6fe;
+        }
+
+        .kontak-detail {
+            flex-grow: 1;
+            text-align: justify;
+        }
+
+        .kontak-detail  {
+            padding-bottom: 20px;
+        }
+
+        .kontak-detail strong {
+            display: inline-block;
+            width: 100px;
+        }
+
+        .kontak-detail p {
+            margin: 0;
+            padding-bottom: 30px;
+            width: 400px;
+        }
+
+        .maps {
+            width: 100%;
+        }
+
+        .containerr {
+            display: flex;
+            justify-content: space-between;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .form-container,
+        .review-container {
+            width: 45%;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        .form-container {
+            box-sizing: border-box;
+        }
+
+        .review-container {
+            overflow-y: auto;
+            max-height: 400px;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .review {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        .rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: left;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .rating label:before {
+            content: "\2605";
+            font-size: 30px;
+        }
+
+        .rating input:checked ~ label:before {
+            color: orange;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            width: 70px;
+            list-style: none;
+            background-color: #fff;
+            border: 1px solid rgba(0,0,0,.15);
+            padding: 0;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            left: -50px;
+        }
+
+        .dropdown-menu a {
+            border-radius: 10px;
+            width: 100%;
+            color: #333; 
+            padding: 8px 15px;
+            display: block;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f1f1f1; /* Warna latar belakang saat opsi dropdown dihover */
+        }
+
+        .dropdown-menu li a {
+            font-size: 15px;
+        }
+
+        footer {
+            background-color: #2D2C2C;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-left, .footer-right {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<nav>
+        <img src="Gambar/Picture2.png" alt="Logo Monumen Kapal Selam" style="width: 60px; height: 60px; margin-left: 50px; margin-right: -370px;">
+        <span style="font-size: 25px;"><a href="log-main.php" style="color: white; text-decoration: none; font-family: Segoe Print;">Monumen Kapal Selam</a></span>
+        <ul>
+            <li><a href="log-main.php">Beranda</a></li>
+            <li><a href="log-fasilitas.php">Fasilitas</a></li>
+            <li><a href="log-gallery.php">Gallery</a></li>
+            <li><a href="log-sejarah.php">Sejarah</a></li>
+            <li><a href="log-kontak.php">Kontak</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" id="profileDropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle"></i>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                    <li><a href="log-login.php" data-toggle="tab">Login</a></li>
+                    <li><a href="log-sign-up.php" data-toggle="tab">Daftar</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+<h1 style="text-align: center; padding-top: 20px;">Kedai Mbah Gendut</h1>
+<hr style="width: 50%; margin: 10px auto; border: 3px solid #2697FF;">
+<div class="kontak">
+    <div class="maps">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2155.3274181439124!2d112.74960413383513!3d-7.266013498132626!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7f97d48b33c61%3A0x739a1b2755534c96!2sKedai%20Mbah%20Gendut!5e0!3m2!1sid!2sid!4v1716726807153!5m2!1sid!2sid" width="1000" height="430" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
+</body>
+</html>
+<footer>
+    <div class="footer-left">
+        Copyright © 2024 Monumen Kapal Selam Surabaya
+    </div>
+    <div class="footer-right">
+        Powered by Monumen Kapal Selam Surabaya
+    </div>
+</footer>
