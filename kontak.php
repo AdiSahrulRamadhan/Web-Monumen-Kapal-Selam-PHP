@@ -260,16 +260,16 @@ if(isset($_SESSION['submit'])) {
                 <ul class="dropdown-menu" aria-labelledby="profileDropdown">
                     <li><a href="tiket.php">Informasi Tiket</a></li>
                     <li><a href="beli-tiket.php">Beli Tiket</a></li>
-                    <li><a href="profile.php#account-info" data-toggle="tab">Tiket Saya</a></li>
+                    <li><a href="profile.php#account-info" >Tiket Saya</a></li>
                 </ul>
             </li>
             <li class="dropdown">
                 <a href="profile.php" class="dropdown-toggle" id="profileDropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle"></i>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-                    <li><a href="profile.php" data-toggle="tab">Profile Saya</a></li>
-                    <li><a href="profile.php#account-change-password" data-toggle="tab">Ubah Password</a></li>
-                    <li><a href="profile.php#account-info" data-toggle="tab">Tiket Saya</a></li>
+                    <li><a href="profile.php" >Profile Saya</a></li>
+                    <li><a href="profile.php#account-change-password" >Ubah Password</a></li>
+                    <li><a href="profile.php#account-info" >Tiket Saya</a></li>
                     <li><a href="logout.php">Logout</a></li>
                 </ul>
             </li>

@@ -250,8 +250,8 @@
                 <a href="#" class="dropdown-toggle" id="profileDropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle"></i>
             </a>
             <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-                <li><a href="log-login.php" data-toggle="tab">Login</a></li>
-                <li><a href="log-sign-up.php" data-toggle="tab">Daftar</a></li>
+                <li><a href="log-login.php" data-toggle="">Login</a></li>
+                <li><a href="log-sign-up.php" data-toggle="">Daftar</a></li>
             </ul>
         </li>
     </ul>
